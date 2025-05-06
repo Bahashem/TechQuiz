@@ -1,5 +1,4 @@
-import "./commands";
-import "./customCommands";  
+import '../commands';  
 import { mount } from "cypress/react18";
 
 // Extend Cypress Chainable interface to include the 'mount' command

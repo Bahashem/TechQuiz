@@ -1,20 +1,20 @@
 import { defineConfig } from 'cypress';
-import { mount } from 'cypress/react18';
-import customViteConfig from './vite.config.js';
+import customViteConfig from './vite.config';
 
-export default defineConfig({ 
-e2e: {
-    baseUrl: 'http://localhost:3000',
-  },
-    component: {
-        devServer: {
-        framework: 'react',
-        bundler: 'vite',
-        viteConfig: customViteConfig,
-        },
-        specPattern: 'cypress/component/**/*.cy.{js,jsx,ts,tsx}',
-        supportFile: 'cypress/support/component.ts',
-        
-
+export default defineConfig({
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+      viteConfig: customViteConfig,
     },
-})
+    specPattern: "cypress/component/**/*.cy.{js,ts,jsx,tsx}",
+    supportFile: 'cypress/support/component.ts',
+  },
+
+  e2e: {
+    baseUrl: 'http://localhost:3001',
+    setupNodeEvents(on, config) {
+    },
+  },
+});

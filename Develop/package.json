@@ -16,12 +16,14 @@
     "render-build": "npm install && npm run build",
     "cypress": "cypress open",
     "test": "cypress run --component",
-    "test-gui": "npx cypress open --detached"
+    "test-gui": "npx cypress open --detached",
+    "cypress:open": "concurrently \"npm run start:dev\" \"npm run cypress\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@cypress/react18": "^2.0.1",
     "@testing-library/cypress": "^10.0.3",
     "@types/mongoose": "^5.11.96",
     "@types/react": "^18.3.3",

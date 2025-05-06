@@ -28,14 +28,5 @@
     "useUnknownInCatchVariables": true /* Ensure 'unknown' is used for catch clause variables. */
   },
   "files": [],
-  "references": [
-    {
-      "path": "./server"
-    },
-    {
-      "path": "./client"
-    },
-    {
-      "path": "./cypress"
-    }]
+  
 }
