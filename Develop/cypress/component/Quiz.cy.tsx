@@ -1,10 +1,10 @@
-import {useState} from 'react';
-// Removed TypeScript-specific import
-import {getQuestions} from '../services/questionApi';
+import { useState } from "react";
+//import type {Question} from  '../../models/Question.ts';
+import { getQuestions } from "../../services/questionApi.ts";
 
-const Quiz =()=>{
-const [questions, setQuestions] = useState([]);
-const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+const Quiz = () => {
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
@@ -14,7 +14,7 @@ const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
       const questions = await getQuestions();
 
       if (!questions) {
-        throw new Error('something went wrong!');
+        throw new Error("something went wrong!");
       }
 
       setQuestions(questions);
@@ -23,9 +23,9 @@ const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     }
   };
 
-  const handleAnswerClick =(isCorrect: boolean) =>{
-  if (isCorrect) {
-        setScore(score +1);
+  const handleAnswerClick = (isCorrect: boolean) => {
+    if (isCorrect) {
+      setScore(score + 1);
     }
     const nextQuestionIndex = currentQuestionIndex + 1;
     if (nextQuestionIndex < questions.length) {
@@ -46,7 +46,10 @@ const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   if (!quizStarted) {
     return (
       <div className="p-4 text-center">
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
+        <button
+          className="btn btn-primary d-inline-block mx-auto"
+          onClick={handleStartQuiz}
+        >
           Start Quiz
         </button>
       </div>
@@ -59,7 +62,10 @@ const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
         <div className="alert alert-success">
           Your score: {score}/{questions.length}
         </div>
-        <button className="btn btn-primary d-inline-block mx-auto" onClick={handleStartQuiz}>
+        <button
+          className="btn btn-primary d-inline-block mx-auto"
+          onClick={handleStartQuiz}
+        >
           Take New Quiz
         </button>
       </div>
@@ -78,20 +84,26 @@ const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  return ( 
-    <div className='card p-4'>
-    <h2>{currentQuestion.question}</h2>
-    <div className="mt-3">
-    {currentQuestion.answers.map((answer, index) => (
-      <div key={index} className="d-flex align-items-center mb-2">
-        <button className="btn btn-primary" onClick={() => handleAnswerClick(answer.isCorrect)}>{index + 1}</button>
-        <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">{answer.text}</div>
+  return (
+    <div className="card p-4">
+      <h2>{currentQuestion.question}</h2>
+      <div className="mt-3">
+        {currentQuestion.answers.map((answer, index) => (
+          <div key={index} className="d-flex align-items-center mb-2">
+            <button
+              className="btn btn-primary"
+              onClick={() => handleAnswerClick(answer.isCorrect)}
+            >
+              {index + 1}
+            </button>
+            <div className="alert alert-secondary mb-0 ms-2 flex-grow-1">
+              {answer.text}
+            </div>
+          </div>
+        ))}
       </div>
-    ))}
     </div>
-  </div>
-);
-}
+  );
+};
 
 export default Quiz;
- 
